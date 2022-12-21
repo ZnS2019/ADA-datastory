@@ -7,20 +7,21 @@ cover-img: /assets/header.png
 use-site-title: true
 ---
 
-<img src="assets/plots/opening_figure.png" alt="topic distribution" width="700"/>
+<center> <img src="assets/plots/opening_figure.png" alt="topic distribution" width="450"/> </center>
 
 ## Motivation
->“Global warming is likely to be the greatest threat of the 21st century.” 
+>“I raise up my voice—not so I can shout, but so that those without a voice can be heard...we cannot succeed when half of us are held back.” 
 
 
-Climate change refers to long-term shifts in temperatures and weather patterns. These shifts can be natural, such as through variations in the solar cycle. 
-Nevertheless, since the 1800s, human activities have been the [main driver of climate change](https://www.ipcc.ch/site/assets/uploads/sites/2/2018/12/ST1.5_OCE_LR.pdf), more precisely in global warming. Indeed, in the last decades we observe a general increase in average temperatures of the Earth, which modifies the weather balances and ecosystems. At the pace of current CO2 emissions, scientists expect an increase of between 1.5° and 5.3°C in average temperature by 2100. If no action is taken, it will have harmful consequences to humanity and the biosphere. 
+Gender discrimination refers to the unequal treatment or perception of individuals based on their gender.
 
-It is critical that these scientific *facts* be widely dissimenated and understood by the general population. This will empower the public to take the necessary steps to curb climate change and reduce their carbon footprint. This topic is hugely relevant today and for future generaitons, and it is critical that we understand how the media discusses climate change to form our campaigns and future research efforts. 
+The history of women's rights is a long and complex one, with significant advancements and setbacks over time. In the past, women have often been treated as second-class citizens, with limited rights and opportunities compared to men. In many societies, women have been denied the right to vote, own property, and receive an education. In the 19th and early 20th centuries, women's rights movements emerged in many countries, leading to the adoption of laws and policies that granted women greater legal rights and equality. Despite these advancements, women continue to face discrimination and inequality in many parts of the world, and the struggle for women's rights and gender equality continues.
+
+It is then important that we further devote our effort into revealing the embedded discriminations, sometimes unseen and latent, to the focus of the views of public.
 
 
-## Goal
-We want to understand how to create a productive awareness campaign about climate change. Using “Quotebank" \[1\] and Robertson's \[2\] website political scores, we quantify the climate change landscape in the media over the last five years. This article will serve as our foundation when forming our future climate change awareness campaigns. 
+## What we did: a brief
+ Movies are a significant player in people's lives. Thus we would like to examine whether gender differences exist in movies. First, we claim the existence of gender difference by investigating the graphical structure of actors collaboration and by pointing out the uneven distribution of actor ages upon participation and the distribution of actor's career span. We then observe from movie plot summaries by looking at most frequency-diverged words across two genders; After that, we tap into the evolutions of gender inequalities by investigating the gender composition in the movie industry over time; Finally, we focus on how the distribution of actors' career age span change over decades to count for the varying gender inequalities.
 
 
 
