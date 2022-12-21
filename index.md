@@ -7,15 +7,7 @@ cover-img: /assets/header.png
 use-site-title: true
 ---
 
-*Dear Jennifer Morgan,*
-
-*We want to thank you for letting us take on the challenge of better understanding the climate change landscape in the news. We believe that this data-driven approach can complement Greenpeace’s existing -- more qualitative -- methods and provide you with a coherent understanding of how the climate change discourse has evolved within the news. After three months of extensive research, we have reached the point where our findings will bring a tangible improvement to Greenpeace’s core mission.*
-
-*Attached you will find our final report.*
-
-*Sincerely your data scienstist team,*
-
-*BSBV*
+<img src="assets/plots/opening_figure.png" alt="topic distribution" width="700"/>
 
 ## Motivation
 >“Global warming is likely to be the greatest threat of the 21st century.” 
