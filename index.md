@@ -21,276 +21,195 @@ It is then important that we further devote our effort into revealing the embedd
 
 
 ## What we did: a brief
- Movies are a significant player in people's lives. Thus we would like to examine whether gender differences exist in movies. First, we claim the existence of gender difference by investigating the graphical structure of actors collaboration and by pointing out the uneven distribution of actor ages upon participation and the distribution of actor's career span. We then observe from movie plot summaries by looking at most frequency-diverged words across two genders; After that, we tap into the evolutions of gender inequalities by investigating the gender composition in the movie industry over time; Finally, we focus on how the distribution of actors' career age span change over decades to count for the varying gender inequalities.
+ First, we claim the existence of gender difference by investigating the graphical structure of actors collaboration, the uneven distribution of actor ages upon participation and the distribution of actor's career span, the most frequency-diverged words across genders and the distribution of common words across genders; 
+ After that, we tap into the evolutions of gender inequalities by investigating the gender composition in the movie industry, the distribution of actor age upon movie participation and career length, the most diverged words and the distribution of common words.
 
 
 
-## Research Questions
-Throughout this article we will answer the following questions:
-* What were the topics and events that triggered conversation about climate change?
-* Who are the main personalities driving the climate change discussion?
-* Which news sites focus most on climate change?
-     * What issues do they focus on?
-* How are the issues politicized?
-* Is climate change getting more polarized? 
+## Story logistics
+First, we point out the existence of cross-gender differences and stereotypes (__gender effects__) in the movie industry by focusing on:
+- The gender composition among top actors/actresses in history;
+- The society's diverged expectation upon male/famale actors;
+- The graphical structure and properties of top actors' collaboration;
+- The uneven distribution of actor ages upon participation and their career span;
+- The most frequency-diverged words in the plot summaries across two genders.
+- The distribution difference of common words across gender
+
+Then, we shift our interest on the evolution of gender effects over time by investigating:
+- The gender composition in the movie industry;
+- The change of distribution of actors' career span on a decade-scale;
+- The most frequency-diverged words over time;
+- The distribution of common words across genders over time.
+
+
        
 ## The data
-We built our dataset from Quotebank, an open corpus of 178 million quotations attributed to the speakers who uttered them. These quotes were extracted from 162 million English news articles published between 2015 and 2020. Additionally, we filtered the dataset and took only climate change related quotes.
-
-We wanted to have as much data as possible to have an accurate analysis. The final climate change database is composed of: 
+We obtain the data from the [CMU Movie Summary Corpus](http://www.cs.cmu.edu/~ark/personas/), in which contains data about different movies, characters and actors in different movies and the plot summary of movies.
 
 
-       Quotes                            Speakers                            Domains  
-       260'924                            178'716                             7'782 
+The __movie data__ is composed of: 
+- `wikipedia_id`: Wikipedia movie ID
+- `freebase_id`: Freebase movie ID
+- `name`: Movie name
+- `release_date`: Movie release date
+- `box_office_revenue`: Movie box office revenue
+- `runtime`: Movie runtime (in minutes)
+- `languages`: Movie languages (Freebase ID:name tuples)
+- `countries`: Movie countries (Freebase ID:name tuples)
+- `genres`: Movie genres (Freebase ID:name tuples)
 
+The __character data__ is composed of:
+- `wikipedia_id`: Wikipedia movie ID
+- `freebase_id`: Freebase movie ID
+- `release_date`: Movie release date
+- `character_name`: Character name
+- `actor_dob`: Actor date of birth
+- `actor_gender`: actor_gender
+- `actor_height`: Actor height (in meters)
+- `actor_ethnicity`: Actor ethnicity (Freebase ID)
+- `actor_name`: Actor name
+- `actor_age`:actor_age
+- `freebase_character_map`: Freebase character/actor map ID
+- `freebase_character_id`: Freebase character ID
+- `freebase_actor_id`: Freebase actor ID
 
-{: .box-note}
+The __plot data__ contains plot summaries of 42,306 movies extracted from the November 2, 2012 dump of English-language Wikipedia.  Each line contains the Wikipedia movie ID (which indexes into movie.metadata.tsv) followed by the summary.
+
+---
+
+>I've seen things you people wouldn't believe. Attack ships on fire off the shoulder of Orion. I watched c-beams glitter in the dark near the Tannhäuser Gate. All those moments will be lost in time, like tears in rain. Now, time to...
        
-#### Now let's turn to analyzing the data! 
+#### Tell the story!
 
-<center> <h1>Is conversation about climate change constant over time?</h1> </center>
+<center> <h1>The Existence of Gender Effects</h1> </center>
 
-Let's start broadly by analysing the evolution of climate change quotes in the last 5 years:
+### The famous actors: what are their characteristics?
 
-<div class="flourish-embed flourish-chart" data-src="visualisation/8162290"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+Actors are an essential part of the movies, and the movies in which the two actors have worked together can be seen as the connect between these two actors, which contributes to a very big social network. With the help of such a network structure, we can find out the structural gender difference in the movies.
 
-<center>  <b> Figure 1:</b> <i>Number of quotes about climate change over time.</i>  </center>
+We start to build up the graph with the prepared nodes and edges data. We use `nx.Graph()` to generate an empty undirected graph and load our prepared data. In our social network graph, every actor represents a node and there is a edge between two nodes if the two actors have cooperated at least one movies. **The more degrees the node has, the more influential the actor is**.
 
-We see that the climate change discussion has evolved over the years, featuring several peaks that correspond to key events taking place globally. 
-We aim to track these key events by analyzing events that took place throughout the years. 
+First we select the top 100 nodes which have the most degrees, which means that they represent 100 most influential actors. We name the original graph G and this subgraph G100. After obversing the gender distribution in graph G and G100, we can find that there are only eight females in the Top100 actors, which shows that in social network of actors the male actors occupy the absolute main force.
 
-* November 2015 : "Pope Francis encourages bishops from around the world to sign an appeal to world leaders, meeting in Paris next month, for crucial climate change talks." 
-* June 2017 : The 1st of June "United States withdrawal from the Paris Agreement"
-* June 2019:  "The House of Representatives of the Netherlands passes the final bill of the climate agreement. The goal of the accord is to have the level of greenhouse gasses in the atmosphere in 2030 the same as the level of greenhouse gasses in the atmosphere in 1990."
-* September 2019:  "Millions of young people take to the streets and numerous businesses worldwide go on strike days before the UN Climate Summit, demanding that further action be taken to confront climate change." 
-       
+<center> <img src="assets/plots/Gender_ratio.png" alt="Gender ratio" width="600"/> </center>
+<center> <b>Figure 1:</b> <i> The number of female and male actors in TOP 100 ranking</i> </center>
+
+After filtering some height outliers, we analyse the height difference in G and G100 between male and female actors. The p-value of T-test for the average height of male between Top100 and all actors is **0.61**, which shows that they are different in fact. So we can find that for female actors, who are in Top100 are usualy taller, but for male actors, who are in Top100 almost the same as the average or even shorter than average. It is a fact that taller people are more likely to become an actor or appear in the movies. Furtherly we can make a conclusion that Society has broad height requirements for male actors, but it often has higher requirements for women.
+
+<center> <img src="assets/plots/Height_difference.png" alt="height difference" width="600"/> </center>
+<center> <b>Figure 2:</b> <i> Average height of famous/all actors across genders</i> </center>
+
+Finally, we generate male subgraph G_male and female subgraph G_female from the social netowrk graph G and compute structural features on them to explore the structural gender difference. 
+
+<center> <img src="assets/plots/Structrual_features.png" alt="structrual diff" width="600"/> </center>
+<center> <b>Figure 3:</b> <i> structural features of the total graph and  gender subgraphs</i> </center>
+
+It is interesting that although male actors's nodes have more average degrees in male subgraph, which means that there are more cooperations in the film and television industry between male actors, female actors actually have more stable partnerships with female actors accroding to the higher transitivity value of gender subgraphs and higher clustering coefficient of specific actors
+
+One convincing explanation is that the number of female actors is less than the male actors, so for every specific kind of female character group in the movies, there are few potiental female candidates, and that is why there is more stable cooperation relationship between female actors.
       
-### Main Topics of Climate Change 
- 
-{: .box-}
-**Technical aside:** Thanks to LDA we are able to determine different topics within the climate change quote! 
+### Actors' careers: is there a gender effect?
 
-If there is one thing Greenpeace knows it's that the way climate change is invoked can vary widely. Some people may focus on its business implications, others will be more concerned with the environmental consequences. To better grasp this nuance, we run topic modelling to uncover some of the latent concepts that are invoked with climate change. Below are the thirty topics we found, alongside the top 20 words for each topic.  
- 
-<div class="flourish-embed flourish-hierarchy" data-src="visualisation/8156209"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
+In this part, we investigate how female and male actors differ in their careers. We plot the average age evolution of female and male actors. It is interesting to see the average ages of both female and male actors increase over time, while in general female actors are almost always younger than male actors.
 
-<center> <b>Figure 2:</b> <i> 30 topics and the top 20 words in each topic.</i> </center>
-       
-We observe a diversity of subtopics like financial, environmental, society, political aspects and many more. **These topics uncover the subtext that is present when climate change quotes are invoked.**
-       
-By understanding the issues that are intrinsic to climate change, we will be able to see which issues have been raised at which time.
-       
-### Evolution of topics over time
+<center> <img src="assets/plots/actor_age_evolution.png" alt="actor_popu_evo" width="600"/> </center>
+<center> <b>Figure 4:</b> <i> Average age of participating actors upon movie release</i> </center>
 
-<center> <img src="assets/plots/topic_evolution.png" alt="topic distribution" width="600"/> </center>
+We then plot the distribution of actors' age upon participation of movies, for the same actor participating in different movies, we count separatedly.
 
-<center> <b>Figure 3:</b> <i>Monthly occurance of topics between 2015 and 2020. The database is missing data for a few months in 2016.</i> </center>
+<center> <img src="assets/plots/female_age_distribution.png" alt="actor_popu_evo" width="80%"/> </center>
+<center> <b>Figure 5:</b> <i> Age distribution of female actresses upon movies participation</i> </center>
 
-       
-Tracking the evolution of climate interest reveals hot-topics and how they evolve. For example, while the Paris Agreement was a hot-topic in November 2015 and 2017 (when Trump pulled out), its interest declined in other months. On the other hand, interest for sustainability and finance tends to persist more consistently. Additionally, the Eurozone and Europe were key issues with climate change in the beginning of 2015. 
+<center> <img src="assets/plots/male_age_distribution.png" alt="actor_popu_evo" width="80%"/> </center>
+<center> <b>Figure 6:</b> <i> Age distribution of male actors upon movies participation</i> </center>
 
+The peak of character ages are in about 20s to 30s for both female and male, while also slight difference exists. The peak of male characters comes a bit later than female characters.
 
-In general, we find that pressing issues like gases, impact on vulnerability, power, footprint and sustainability have a lasting interest. But topics related to events like the Paris Agreement, the strikes in 2019, or even what Trump receive less consistent attention. 
+Besides the peak shift, we see the hist of female age distribution "thinner" than that of male age distribution, which probably means shorter career span. To be more precise, we sort the data with actors with their charaters. The career span in year is then computed from the difference of latest and ealiest character. 
 
-       
-### Are more people talking about climate change? 
-       
-We performed a linear trend curve and observed a minimal increase of quotes per month that was not statistically significant. Indeed, the flat slope indicates that climate change did not see a large increase throughout the years. Furthermore, the spikes in the graph reveal the events the trigger conversation about climate change.  
+Below is the figure of general career span distribution. We could conclude that female actors generally have shorter career span than male actors, while most actors only have 1 year of career span, meaning only have starred in 1 movie. 
+
+<center> <img src="assets/plots/career_span_distribution.png" alt="actor_popu_evo" width="80%"/> </center>
+<center> <b>Figure 7:</b> <i> Cumulative density function of female and male actors' strred age span</i> </center>
       
-<center> <h1>Who talks about climate change? </h1> </center>
+### Words count! What do we know from the plots?
 
-Over the last five years, here are the people that were most quoted in relation to climate change:
+We also want to study the plot summaries in the movies. We aim to discover whether gender stereotypes exist in the movie plots. We defined gender stereotypes as the presence of gender-neutral words biased towards describing male or female characters. We consider relevant words for characters as the first or last two words of a verb or adjective from the character name within sentences in plot summaries. We extract relevant words around these names by gender and count the log frequency of words related to different genders.
 
-_Do the most quoted people talk mostly about climate change?_
+For qualitative analysis, we look at the differences in frequencies of words between genders and rank the verbs and adjectives based on this difference. as the most-distinguishable words for men and women.
 
-<div class="flourish-embed flourish-cards" data-src="visualisation/8165651"><script src="https://public.flourish.studio/resources/embed.js"></script></div> 
-<center> <b> Figure 4:</b> <i>Most quoted speakers.</i> </center>
+<center> <img alt="image 1" src="https://cdn.jsdelivr.net/gh/Wind2375like/I-m_Ghost@main/img/9b71880a5e4063e7b5a85ef80ee2282a2dc032aca5141e64ae7d139b510b12c0.png" width="100%"/> </center>
+<center> <b>Figure 8:</b> <i> Top 20 words with largest frequency difference according to genders</i> </center>
 
-It seems not! Surprisingly, on average a third of speakers' quotes are about climate change. 
+We can find that men and women have more distinct word preferences. For the verbs and adjectives, males are associated with crime (kill, shoot, fight, arrest, dead, criminal.), power (lead, manage, powerful), and politics (corrupt), while females are depicted with the word marriage (marry, marriage), love, reproduction (pregnant), appearance (beautiful) and sex (seduce, sexual).
 
-*Are there trends between the most quoted speakers?* 
-To answer this question we delve into the backgrounds of the speakers on climate change. Metadata on the speakers was extracted from Wikidata, a large knowledge base containing volunteer-inputed information about entities. We find that climatologists and scientists more generally are more likely to be quoted about climate change, whereas athletes and artists are less likely to speak about climate change.
+For quantitative analysis, we compare the distributions of verb or adjectives frequencies between men and women. We use a __chi-square test__ to see if the difference is significant and adopt __KL divergence__ to measure how different the two distributions are. The p-value in the chi-square test is close to zero, indicating the difference is significant. The KL divergence is 0.07 and 0.16 for verbs and adjectives, see our code base for more details!
 
-<div class="flourish-embed flourish-hierarchy" data-src="visualisation/8173554"><script src="https://public.flourish.studio/resources/embed.js"></script></div>
-<center> <b> Figure 5:</b> <i> Top 5 and bottom 5 occupations among speakers, as a proportion of their quotes that revolve around climate change.</i> </center>
+<center> <h1>Time Evolution of Gender Effects</h1> </center>
 
-<center> <h1>Who said "embedding"?</h1> </center>
-
-#### Connecting speakers and sites in an **al-gore-ithmic embedding**.
+#### Are women gaining more places in the industry?
        
-Understanding climate change related quotes requires uncovering both the speakers and where the quote takes place. We develop a high-fidelity embedding of news sources where similarity is measured by commonality in who the site quotes. **Two sites are then close if they share a lot of speakers, and far away if they have little similarity in the speakers**. Simply put, this embedding is created through a latent semantic analysis (PCA on the tf-idf matrix), where the documents are sites and words are speakers. 
+We are interested in how gender composition in the movie industry evolves. To answer these questions, we first derive the annual gender composition in the movie industry.
 
-The embedding is capable of effectively clustering news sites into coherent groups. The clusters are both based on topical similarity (fashion, sports, climate, news, and finance) and geographic proximity, which are captured in the KMeans clustering we do on the space. Here we include a small video of the embedding, but the full embedding can be played around with <a href="https://projector.tensorflow.org/?config=https://gist.githubusercontent.com/vminvsky/45b24d87668ee39c42ed431e2a510696/raw/a89a3cb6d46d9baf7ae5c6001ee07613f1c94353/quotebank_embedding">here</a>
+<center> <img src="assets/plots/genderCount.png" alt="gendercount" width="100%"/> </center>
+<center> <b>Figure 9:</b> <i> Annual actor, actress count average by sex </i> </center>
 
-<a href="https://gifyu.com/image/SSN8w"><img src="https://s10.gifyu.com/images/embedding_video.gif" alt="embedding_video.gif" border="0" /></a>
+With the annual actors count by sex in hand, we are able to investigate into the gender composition in the movie industry by time.
 
-<center> <b> Visualization:</b> <i>Watch this video to get a feel for the space and the embedding.</i> </center>
+Note that we have huge data variance in the first the last few years, data may not be representative. The pattern we observe here is somewhat different.
+We are interested in how may films are released in each year. If there are few films released that year, data at that year may not be repesentative.
+According to analysis (see details in our codebase!) We crop the head and tail of the original data to make results more confident.
 
-Now Jennifer, at this point you may be wondering, "What the embedding is going on?!" It is better to show than tell, why we used this representation. Thanks to the embedding (without which it would not have been imaginable), we were able to conduct numerous analyes. 
+<center> <img src="assets/plots/genderDiff.png" alt="genderdiff" width="100%"/> </center>
+<center> <b>Figure 10:</b> <i> Annual actor/actress count average difference with 95% confidence interval </i> </center>
 
-#### Developing climate topic vectors
-After embedding each of the news sites, we turn to the embedding of concepts. A concept embedding is an attempt to vectorize linguistic concepts in the speaker space. The concepts we aimed to embed were climate change, and various climate change subtopics found from LDA. Each concept is calculated as the weighted average of the communities that share the concept related quote. Below we include the ten sites that projected highest onto the climate change vector. 
+Then, we look at the ratio of male actors count against the female actresses count by year.
 
-<center> <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>domain</th>
-      <th>Projection score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>yaleclimateconnections.org</td>
-      <td>0.890519</td>
-    </tr>
-    <tr>
-      <td>climatecentral.org</td>
-      <td>0.884039</td>
-    </tr>
-    <tr>
-      <td>mongabay.com</td>
-      <td>0.830271</td>
-    </tr>
-    <tr>
-      <td>greenbiz.com</td>
-      <td>0.830028</td>
-    </tr>
-    <tr>
-      <td>desmogblog.com</td>
-      <td>0.829195</td>
-    </tr>
-    <tr>
-      <td>treehugger.com</td>
-      <td>0.807636</td>
-    </tr>
-    <tr>
-      <td>blueandgreentomorrow.com</td>
-      <td>0.804560</td>
-    </tr>
-    <tr>
-      <td>carbonbrief.org</td>
-      <td>0.802666</td>
-    </tr>
-    <tr>
-      <td>theenergycollective.com</td>
-      <td>0.800073</td>
-    </tr>
-    <tr>
-      <td>theclimategroup.org</td>
-      <td>0.791573</td>
-    </tr>
-  </tbody>
-</table>
-</center>
+<center> <img src="assets/plots/genderRatio.png" alt="genderratio" width="100%"/> </center>
+<center> <b>Figure 11:</b> <i> Annual actor/actress count average ratio </i> </center>
 
-<center> <b> Table 1:</b> <i> Top ten sites by projection on the climate vector. </i> </center>
+It is not hard to see that the __portion__ of female actors first decreases then increases, while the absolute number of female actors keeps increasing after around 1942.
 
-### Specialized or generalized! How widely discusses are the topics? 
+We explain that:
 
-One question we’re often tasked with at Greenpeace is understanding which issues pertaining to climate change need our attention. Do we find a very specialized issue that will win the hearts of a specific audience? Or should we try to be more general to rally larger support? Before we can even do this, however, we are required to **understand which issues are generally discussed, and which issues are highly specialized**. To do this, we find the average cosine similarity between the center of mass for each topic in our embedding, and the sites which talk about that topic. This idea was taken from the work of Waller and Anderson \[4\]. A topic is widely shared if it is invoked in a wide range of communities, and it is locally shared if it occurs in a very specific area of the embedding.  
-       
-       
-<center> <table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Most generalized</th>
-      <th>Most specialized</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>society</td>
-      <td>eurozone</td>
-    </tr>
-    <tr>
-      <td>concern</td>
-      <td>models</td>
-    </tr>
-    <tr>
-      <td>reduction</td>
-      <td>tax/trade</td>
-    </tr>
-    <tr>
-      <td>power/footprint</td>
-      <td>trump</td>
-    </tr>
-    <tr>
-      <td>biodiversity</td>
-      <td>science</td>
-    </tr>
-  </tbody>
-</table>
-</center> 
+$$\frac{Male}{Female} = f(t)$$
 
-<center> <b> Table 2: </b> <i> Most generalist and specialist climate topics </i> </center>
+Therefore we have:
 
-### Projecting concept vectors
-Now that we know how generalized and specialized the topics are, we assess which sites care about which issues. When publishing or sharing our developments with specific news sites we need to develop a persona for the audience of that site, to know which climate related concept is important to them. By doing this, we can maximize our efforts to disseminate information the reader will find most beneficial. We want to speak the language of the reader, not in gibberish that’s likely to go over their head. 
+$$Male - Female = Female(f(t) - 1)$$
 
-Since each concept vector is projected in the same space as the actual site, we can calculate the cosine similarity between the two vectors to measure alignment between the news site and the topic. Our findings are in line with what one would intuitively expect. When climate change is invoked, business sites are more likely to speak about trade and taxes, whereas international organizations like the UN focus on development and rising sea levels. 
+We observe that:
+- $Male - Female = Female(f(t) - 1)$ increases to summit at 1941, then decreases and stays stable.
+- $\frac{Male}{Female} = f(t)$  increases to summit at 1941, then decreases all the way.
 
-However, one finding that surprised is the role that Trump played in driving climate change discussion across many news sites. While himself a known climate change denalist, Trump’s outbursts dramatically increased the number of discussions that took place surrounding climate change. We find that HuffPost and Fox News are far more likely to discuss climate change alongside Trump, rather than other pressing climate concerns like the global south and environmental impacts. Further analysis is needed to understand whether this new form of discussion is beneficial, but if the maxim “all publicity is good publicity” holds, then increased exposure to climate change discussion -- regardless of origin -- will help our cause. Below we feature a visual that includes the issue alignment on several key issues for seven sites.  
+We conclude that the ratio of male-female attendance in films first increases then decreases. But genreally there are more men than women in the movie industry.
 
-{% include plots/news_interests.html %}
-
-<center> <b> Figure 6: </b> <i> Topic interests by news site </i> </center>
+To count for the stable variation of actors count difference, we explain that it is because the increase of absolute number of women actress.
 
 
-### Connecting partisan scores to climate change issues
+#### Actors' careers: from decades' perspective
 
-To begin, we quantify the difference between the climate change discussion and all quotes more broadly. This will shine a light on the context in which climate change quotes occur. We find that climate change related quotes are more likely to occur in newspapers on the left than the right, and that the far right also has a propensity of bringing up climate change. 
-       
-<img src="assets/plots/difference_plot.png" alt="topic distribution" width="700"/>
-<center> <b>Figure 7:</b> <i>How climate quotes differ from all quotes on the partisan axis. Lower means further to the left politically. Higher means further to the right politcally. As we can see, climate quotes take place more on the left than the right.</i> </center>
- 
-      
-Duncan Watts’ famous finding that while both the left and the right consume science, the science they consume differs, raises an important question in our analysis. While both the left and the right may discuss climate change (the left invokes it more), does the type of conversation about climate change differ between the groups? If so, understanding this dynamic will enable us to better target the individual news sites and/or speak the language of the audience. 
+Below is the figure of the evolution of career span distribution through different decades. We see the difference between genders is narrowing. (Except for the last plot for actors born from 1990 to 2000, but those may be too young to say about a entire career span.) It may be because of increasing awareness of female rights.
 
-To understand when the left and the right bring up climate change comments, we are required to analyze the textual level, relying on our favourite LDA. Below we present a series of histograms that present how climate change topics differ along partisan lines. We find that when the right invokes climate change, it is most often brought up in the context of business, trade, or tax. In contrast, the left tends to focus more on development, rising sea levels, and temperature. 
+<center> <img src="assets/plots/career_span_evolution.png" alt="span_evo" width="100%"/> </center>
+<center> <b>Figure 12:</b> <i> Career span for female and male actors born in different decades </i> </center>
 
-       
-<center> <img src="assets/plots/topic_distribution.png" alt="topic distribution" width="700"/> </center>
+### Plots: what does their variety over time inform?
+Then we wonder if the gender stereotype evolves with time. We will still use qualitative and quantitative analysis. We group the movies by the release date and cut them by decades.
 
-<center> <b> Figure 8:</b>  <i> Partisan distribution of topics. </i> </center>
+<center> <img alt="image 2" src="https://cdn.jsdelivr.net/gh/Wind2375like/I-m_Ghost@main/img/c52046d4d4bbdd36b68190214976b37e890c88b9b1fd1b25c05f9d0312903166.png" width="90%" /> </center>
+<center> <b>Figure 13:</b> <i> Top 20 verbs with frequency difference according to genders in different times </i> </center>
+
+We only show the verbs here. The results of adjectives are similar. We can find that the trends are similar and coherent with the overall analysis. However, we notice a decrease in absolute value by looking at the scale of the x-axis. This may tell us that the bias exists, but it is decreasing with time. Our quantitative analysis further argues this point. We do a regression analysis between KL divergence and decades.
+
+<center> <img alt="image 3" src="https://cdn.jsdelivr.net/gh/Wind2375like/I-m_Ghost@main/img/6fc54e3e8b1cf1a307c07494a3a7c8c2d91c939d3bc88734d65a60e4477945d5.png" width="80%" /> </center>
+<center> <b>Figure 14:</b> <i> Linear regression between KL divergence and decades </i> </center>
+
+We could see that the KL divergence is decreasing, so gender stereotype exists but decreases with time. We also compare the gender stereotypes between genres, but that's not part of our main story and you can see the notebook for details.
 
 
-### Polarization
-
-Statically, left leaning newspaper sites tend to speak about climate change more than right leaning sites. This result, while not surprising, does add to the increasing evidence we here at Greenpeace have found about the role politics play in forming the views of the people. To better understand this dynamic **we studied how different sites have used climate change in their discussions over time to answer the question of whether climate change discussion has been polarized over the years**. Ever since 2015, left-leaning news sites have been responsible for most of the discussion surrounding climate change, whereas the far-right sites quote an increasingly small portion of speakers who talk about climate change. The proportions have remained surprisingly static over time, with the left dominating the discussion. We believe this to be a positive finding since it supports the argument that the discussion surrounding climate change is not becoming polarized. And, in fact, the centrist sites are increasingly representing the discussion surrounding climate change as evidenced by the plot below. 
-
-{% include plots/polarization.html %}
-
-<center> <b>Figure 9:</b> <i> Climate discussion polarization over time.</i> </center>
 
 
 <center> <h1>Conclusion and Implication</h1> </center>
        
-In this report we presented our analysis of climate change in the media. We find that climate change discussion has been remained fairly static over the last five years, seeing a minor rise in the end of 2019 into 2020. Key events like the Paris Agreement and Trump’s language drive public discussion around the topic, and the frequency of quotes increases dramatically. We find that there is a clear divide between who speaks about climate change. While in aggregate, this is dominated by similar top speakers to the overall Quotebank dataset, we find that the largest proportion on speakers on climate change tend to be scientsits of some sort. 
-
-Finally, we developed an embedding technique to deepen our understanding of climate change in the news. This embedding technique provided us a new lens for studying climate change in the news, where each site was represented as a point in a high-dimensional vector space with two sites close together if they share a lot of the same speakers. This embedding was used to augment our understanding of the topics that were discussed and study how sites formed distinct clusters.
-
-To reiterate, here are our core findings:
-* Climate change discussion has remained fairly static over the last five years, seeing temporary spikes around key climate conferences, but then a return to the norm. Since 2019, however, we noticed in uptick in the climate conversation. 
-* Track how salient topics evolved over time. 
-* Climate change discussion is dominated by politicians. However, the largest portion of quotes about climate change comes from various scientists.
-* We then present a few findings using embeddings.
-    * Climate similar news sites
-    * Most general and specialist climate issues. 
-    * Newspaper alignment with various issues.
-    * Partisan leanings of climate issues.
-    * Polarization of climate.
-
-
-<center> <h1>Acknowledgements</h1> </center>
-
-Special thanks to the past work of Rachel Kim, Isaac Waller, and Ashton Anderson for forming some of our research. Below we include key papers used in analysis. 
-
-[1] Vaucher, T., Spitz, A., Catasta, M., & West, R. (2021, March). Quotebank: A Corpus of Quotations from a Decade of News. In Proceedings of the 14th ACM International Conference on Web Search and Data Mining (pp. 328-336).
-
-[2] Robertson, R. E., Jiang, S., Joseph, K., Friedland, L., Lazer, D., & Wilson, C. (2018). Auditing partisan audience bias within google search. Proceedings of the ACM on Human-Computer Interaction, 2(CSCW), 1-22.
-
-[3] Hamilton, W. L., Leskovec, J., & Jurafsky, D. (2016). Diachronic word embeddings reveal statistical laws of semantic change. arXiv preprint arXiv:1605.09096.
-
-[4] Waller, I., & Anderson, A. (2021). Quantifying social organization and political polarization in online platforms. Nature, 600(7888), 264-268.
-
-[5] Waller, I., & Anderson, A. (2019, May). Generalists and specialists: Using community embeddings to quantify activity diversity in online platforms. In The World Wide Web Conference (pp. 1954-1964).
+In this report we presented the existence and evolution of gender effects in the movie industry from the movie dataset obtained. We find that such gender effect does appear and is significant. However the good news is such effect is easing as time goes by.
