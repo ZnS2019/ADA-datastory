@@ -15,6 +15,7 @@ author: AllDatapointAccurate
 
 navbar-links:
   About Us: "aboutme"
+  Github Repo: "https://github.com/epfl-ada/ada-2022-project-alldatapointaccurate"
   #Resources:
   #  - Beautiful Jekyll: "https://beautifuljekyll.com"
    # - Learn markdown: "https://www.markdowntutorial.com/"
