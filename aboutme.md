@@ -1,16 +1,19 @@
 ---
 layout: page
-title: About me
-subtitle: Why you'd want to go on a date with me
+title: About Us
+subtitle: Who we are
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+Welcome to our website! We are 4 Applied Data Analysts who wish to vulgarize all sorts of climate change related data. Indeed, the goal is to give tools to any person concerned about Climate Urgency, to better understand and interpret the situation. 
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+![GP](https://www.dictionary.com/e/wp-content/uploads/2017/11/feminism3-790x310.jpg){: .mx-auto.d-block :}
 
-What else do you need?
+We are DataAnalysist from Greenpeace who wish to make the world, a better place. 
+## Let's present the Team 
 
-### My story
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+| Who?  | Funfact 
+| :------ |:------: |
+| Venia   |You will never find him in the same location, is he hidding? |
+| Blanche | What is she doing again? |
+| Sandra  |Embbeding specialist.  |
+| Belén   |The major fan of the _Minimum_ function.  |

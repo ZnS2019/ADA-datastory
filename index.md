@@ -1,7 +1,7 @@
 ---
 layout: page
-title: RandomTitle!!!
-subtitle: "CONFIDENTIAL: Internal report on news site alignment on climate issues."
+title: Gender Lens
+subtitle: "A Cinematic Analysis"
 output: html_document
 cover-img: /assets/header.png
 use-site-title: true
