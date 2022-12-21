@@ -1,3 +1,14 @@
+<head>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+</head>
 ---
 layout: page
 title: Gender Lens
@@ -197,7 +208,7 @@ Below is the figure of the evolution of career span distribution through differe
 ### Plots: what does their variety over time inform?
 Then we wonder if the gender stereotype evolves with time. We will still use qualitative and quantitative analysis. We group the movies by the release date and cut them by decades.
 
-<center> <img alt="image 2" src="https://cdn.jsdelivr.net/gh/Wind2375like/I-m_Ghost@main/img/c52046d4d4bbdd36b68190214976b37e890c88b9b1fd1b25c05f9d0312903166.png" width="90%" /> </center>
+{% include plots/freqword_evo.html %}
 <center> <b>Figure 13:</b> <i> Top 20 verbs with frequency difference according to genders in different times </i> </center>
 
 We only show the verbs here. The results of adjectives are similar. We can find that the trends are similar and coherent with the overall analysis. However, we notice a decrease in absolute value by looking at the scale of the x-axis. This may tell us that the bias exists, but it is decreasing with time. Our quantitative analysis further argues this point. We do a regression analysis between KL divergence and decades.
