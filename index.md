@@ -117,11 +117,9 @@ In this part, we investigate how female and male actors differ in their careers.
 
 We then plot the distribution of actors' age upon participation of movies, for the same actor participating in different movies, we count separatedly.
 
-<center> <img src="assets/plots/female_age_distribution.png" alt="actor_popu_evo" width="80%"/> </center>
-<center> <b>Figure 5:</b> <i> Age distribution of female actresses upon movies participation</i> </center>
+<center> <img src="assets/plots/actor_age_distribution.png" alt="actor_popu_evo" width="80%"/> </center>
+<center> <b>Figure 5:</b> <i> Age distribution of female and male actors upon movies participation</i> </center>
 
-<center> <img src="assets/plots/male_age_distribution.png" alt="actor_popu_evo" width="80%"/> </center>
-<center> <b>Figure 6:</b> <i> Age distribution of male actors upon movies participation</i> </center>
 
 The peak of character ages are in about 20s to 30s for both female and male, while also slight difference exists. The peak of male characters comes a bit later than female characters.
 
@@ -130,7 +128,7 @@ Besides the peak shift, we see the hist of female age distribution "thinner" tha
 Below is the figure of general career span distribution. We could conclude that female actors generally have shorter career span than male actors, while most actors only have 1 year of career span, meaning only have starred in 1 movie. 
 
 <center> <img src="assets/plots/career_span_distribution.png" alt="actor_popu_evo" width="80%"/> </center>
-<center> <b>Figure 7:</b> <i> Cumulative density function of female and male actors' strred age span</i> </center>
+<center> <b>Figure 6:</b> <i> Cumulative density function of female and male actors' strred age span</i> </center>
       
 ### Words count! What do we know from the plots?
 
@@ -139,7 +137,7 @@ We also want to study the plot summaries in the movies. We aim to discover wheth
 For qualitative analysis, we look at the differences in frequencies of words between genders and rank the verbs and adjectives based on this difference. as the most-distinguishable words for men and women.
 
 <center> <img alt="image 1" src="https://cdn.jsdelivr.net/gh/Wind2375like/I-m_Ghost@main/img/9b71880a5e4063e7b5a85ef80ee2282a2dc032aca5141e64ae7d139b510b12c0.png" width="100%"/> </center>
-<center> <b>Figure 8:</b> <i> Top 20 words with largest frequency difference according to genders</i> </center>
+<center> <b>Figure 7:</b> <i> Top 20 words with largest frequency difference according to genders</i> </center>
 
 We can find that men and women have more distinct word preferences. For the verbs and adjectives, males are associated with crime (kill, shoot, fight, arrest, dead, criminal.), power (lead, manage, powerful), and politics (corrupt), while females are depicted with the word marriage (marry, marriage), love, reproduction (pregnant), appearance (beautiful) and sex (seduce, sexual).
 
@@ -152,7 +150,7 @@ For quantitative analysis, we compare the distributions of verb or adjectives fr
 We are interested in how gender composition in the movie industry evolves. To answer these questions, we first derive the annual gender composition in the movie industry.
 
 <center> <img src="assets/plots/genderCount.png" alt="gendercount" width="100%"/> </center>
-<center> <b>Figure 9:</b> <i> Annual actor, actress count average by sex </i> </center>
+<center> <b>Figure 8:</b> <i> Annual actor, actress count average by sex </i> </center>
 
 With the annual actors count by sex in hand, we are able to investigate into the gender composition in the movie industry by time.
 
@@ -161,12 +159,12 @@ We are interested in how may films are released in each year. If there are few f
 According to analysis (see details in our codebase!) We crop the head and tail of the original data to make results more confident.
 
 <center> <img src="assets/plots/genderDiff.png" alt="genderdiff" width="100%"/> </center>
-<center> <b>Figure 10:</b> <i> Annual actor/actress count average difference with 95% confidence interval </i> </center>
+<center> <b>Figure 9:</b> <i> Annual actor/actress count average difference with 95% confidence interval </i> </center>
 
 Then, we look at the ratio of male actors count against the female actresses count by year.
 
 <center> <img src="assets/plots/genderRatio.png" alt="genderratio" width="100%"/> </center>
-<center> <b>Figure 11:</b> <i> Annual actor/actress count average ratio </i> </center>
+<center> <b>Figure 10:</b> <i> Annual actor/actress count average ratio </i> </center>
 
 It is not hard to see that the __portion__ of female actors first decreases then increases, while the absolute number of female actors keeps increasing after around 1942.
 
@@ -195,18 +193,18 @@ Below is the figure of the evolution of career span distribution through differe
 <center> <b>Figure 12:</b> <i> Career span for female and male actors born in different decades </i> </center> -->
 
 <center> {% include plots/span_ecdf.html %} </center>
-<center> <b>Figure 12:</b> <i> Career span for female and male actors born in different decades </i> </center>
+<center> <b>Figure 11:</b> <i> Career span for female and male actors born in different decades </i> </center>
 
 ### Plots: what does their variety over time inform?
 Then we wonder if the gender stereotype evolves with time. We will still use qualitative and quantitative analysis. We group the movies by the release date and cut them by decades.
 
 <center> {% include plots/freqword_evo.html %} </center>
-<center> <b>Figure 13:</b> <i> Top 20 words with largest frequency difference according to different decades </i> </center>
+<center> <b>Figure 12:</b> <i> Top 20 words with largest frequency difference according to different decades </i> </center>
 
 We only show the verbs here. The results of adjectives are similar. We can find that the trends are similar and coherent with the overall analysis. However, we notice a decrease in absolute value by looking at the scale of the x-axis. This may tell us that the bias exists, but it is decreasing with time. Our quantitative analysis further argues this point. We do a regression analysis between KL divergence and decades.
 
 <center> <img alt="image 3" src="https://cdn.jsdelivr.net/gh/Wind2375like/I-m_Ghost@main/img/6fc54e3e8b1cf1a307c07494a3a7c8c2d91c939d3bc88734d65a60e4477945d5.png" width="80%" /> </center>
-<center> <b>Figure 14:</b> <i> Linear regression between KL divergence and decades </i> </center>
+<center> <b>Figure 13:</b> <i> Linear regression between KL divergence and decades </i> </center>
 
 We could see that the KL divergence is decreasing, so gender stereotype exists but decreases with time. We also compare the gender stereotypes between genres, but that's not part of our main story and you can see the notebook for details.
 
