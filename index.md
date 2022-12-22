@@ -102,7 +102,7 @@ After filtering some height outliers, we analyse the height difference in G and 
 Finally, we generate male subgraph G_male and female subgraph G_female from the social netowrk graph G and compute structural features on them to explore the structural gender difference. 
 
 <center> <img src="assets/plots/Structrual_features.png" alt="structrual diff" width="600"/> </center>
-<center> <b>Figure 3:</b> <i> structural features of the total graph and  gender subgraphs</i> </center>
+<center> <b>Table 3:</b> <i> structural features of the total graph and  gender subgraphs</i> </center>
 
 It is interesting that although male actors's nodes have more average degrees in male subgraph, which means that there are more cooperations in the film and television industry between male actors, female actors actually have more stable partnerships with female actors accroding to the higher transitivity value of gender subgraphs and higher clustering coefficient of specific actors
 
@@ -189,17 +189,19 @@ To count for the stable variation of actors count difference, we explain that it
 
 #### Actors' careers: from decades' perspective
 
-Below is the figure of the evolution of career span distribution through different decades. We see the difference between genders is narrowing. (Except for the last plot for actors born from 1990 to 2000, but those may be too young to say about a entire career span.) It may be because of increasing awareness of female rights.
+Below is the figure of the evolution of career span distribution through different decades. We see the difference between genders is narrowing. (Except for the last plot for actors born from 1990 to 2000, but those may be too young to say about an entire career span.) It may be because of increasing awareness of female rights.
 
-<center> <img src="assets/plots/career_span_evolution.png" alt="span_evo" width="100%"/> </center>
-<center> <b>Figure 12:</b> <i> Career span for female and male actors born in different decades </i> </center>
+<!-- <center> <img src="assets/plots/career_span_evolution.png" alt="span_evo" width="100%"/> </center>
+<center> <b>Figure 12:</b> <i> Career span for female and male actors born in different decades </i> </center> -->
 
 <center> {% include plots/span_ecdf.html %} </center>
+<center> <b>Figure 12:</b> <i> Career span for female and male actors born in different decades </i> </center>
 
 ### Plots: what does their variety over time inform?
 Then we wonder if the gender stereotype evolves with time. We will still use qualitative and quantitative analysis. We group the movies by the release date and cut them by decades.
 
 <center> {% include plots/freqword_evo.html %} </center>
+<center> <b>Figure 13:</b> <i> Top 20 words with largest frequency difference according to different decades </i> </center>
 
 We only show the verbs here. The results of adjectives are similar. We can find that the trends are similar and coherent with the overall analysis. However, we notice a decrease in absolute value by looking at the scale of the x-axis. This may tell us that the bias exists, but it is decreasing with time. Our quantitative analysis further argues this point. We do a regression analysis between KL divergence and decades.
 
