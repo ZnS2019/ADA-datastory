@@ -194,6 +194,8 @@ Below is the figure of the evolution of career span distribution through differe
 <center> <img src="assets/plots/career_span_evolution.png" alt="span_evo" width="100%"/> </center>
 <center> <b>Figure 12:</b> <i> Career span for female and male actors born in different decades </i> </center>
 
+<center> {% include plots/span_ecdf.html %} </center>
+
 ### Plots: what does their variety over time inform?
 Then we wonder if the gender stereotype evolves with time. We will still use qualitative and quantitative analysis. We group the movies by the release date and cut them by decades.
 
