@@ -94,6 +94,32 @@ First we select the top 100 nodes which have the most degrees, which means that 
 <center> <img src="assets/plots/Gender_ratio.png" alt="Gender ratio" width="600"/> </center>
 <center> <b>Figure 1:</b> <i> The number of female and male actors in TOP 100 ranking</i> </center>
 
+Let us have a look at the most famous male and female actors, who are **Samuel L. Jackson** and **Whoopi Goldberg**.
+
+<html>
+  <table cellspacing="30">
+    <tr>
+      <td><img alt="male" src="assets/plots/Famous_male_actor.png" width = "100%"></td>
+      <td><center>Samuel L. Jackson</center>
+      <p>He was born on December 21, 1948, known as a famous American actor and producer. One of the most widely recognized actors of his generation, the films in which he has appeared have collectively grossed over 27 billion worldwide, making him the third highest-grossing actor of all time. The Academy of Motion Picture Arts and Sciences gave him an Academy Honorary Award in 2022 as "A cultural icon whose dynamic work has resonated across genres and generations and audiences worldwide. </p>
+      <p>Representative Works: <em>Jurassic Park, Pulp Fiction, Star Wars Series, Marvel Cinematic Universe.</em></p>
+      <p>You can see more details <strong><a href="https://en.wikipedia.org/wiki/Samuel_L._Jackson">here</a></strong>!</p></td>
+    </tr>
+  </table>
+</html>
+
+<html>
+  <table cellspacing="30">
+    <tr>
+      <td><center>Whoopi Goldberg</center>
+      <p>Caryn Elaine Johnson was born on November 13, 1955, known professionally as Whoopi Goldberg (/ˈwʊpi/), is an American actor, comedian, author, and television personality. A recipient of numerous accolades, she is one of 17 entertainers to win the EGOT, which includes an Emmy Award, a Grammy Award, an Academy Award ("Oscar"), and a Tony Award. In 2001, she received the Mark Twain Prize for American Humor. </p>
+      <p>Representative Works: <em>Ghost, The Color Purple, Sister Act 1, Sister Act 2: Back in the Habit, Teenage Mutant Ninja Turtles.</em></p>
+      <p>You can see more details <strong><a href="https://de.wikipedia.org/wiki/Whoopi_Goldberg">here</a></strong>!</p></td>
+      <td><img alt="male" src="assets/plots/Famous_female_actor.png" width = "100%"></td>
+    </tr>
+  </table>
+</html>
+
 After filtering some height outliers, we analyse the height difference in G and G100 between male and female actors. The p-value of T-test for the average height of male between Top100 and all actors is **0.61**, which shows that they are different in fact. So we can find that for female actors, who are in Top100 are usualy taller, but for male actors, who are in Top100 almost the same as the average or even shorter than average. It is a fact that taller people are more likely to become an actor or appear in the movies. Furtherly we can make a conclusion that Society has broad height requirements for male actors, but it often has higher requirements for women.
 
 <center> <img src="assets/plots/Height_difference.png" alt="height difference" width="600"/> </center>
