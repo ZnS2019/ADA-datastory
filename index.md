@@ -99,7 +99,7 @@ Let us have a look at the most famous male and female actors, who are **Samuel L
 <html>
   <table cellspacing="30">
     <tr>
-      <td><img alt="male" src="assets/plots/Famous_male_actor.png" width = "100%"></td>
+      <td><img alt="male" src="assets/plots/Famous_male_actor.png" width = "200%"></td>
       <td><center>Samuel L. Jackson</center>
       <p>He was born on December 21, 1948, known as a famous American actor and producer. One of the most widely recognized actors of his generation, the films in which he has appeared have collectively grossed over 27 billion worldwide, making him the third highest-grossing actor of all time. The Academy of Motion Picture Arts and Sciences gave him an Academy Honorary Award in 2022 as "A cultural icon whose dynamic work has resonated across genres and generations and audiences worldwide. </p>
       <p>Representative Works: <em>Jurassic Park, Pulp Fiction, Star Wars Series, Marvel Cinematic Universe.</em></p>
@@ -115,7 +115,7 @@ Let us have a look at the most famous male and female actors, who are **Samuel L
       <p>Caryn Elaine Johnson was born on November 13, 1955, known professionally as Whoopi Goldberg (/ˈwʊpi/), is an American actor, comedian, author, and television personality. A recipient of numerous accolades, she is one of 17 entertainers to win the EGOT, which includes an Emmy Award, a Grammy Award, an Academy Award ("Oscar"), and a Tony Award. In 2001, she received the Mark Twain Prize for American Humor. </p>
       <p>Representative Works: <em>Ghost, The Color Purple, Sister Act 1, Sister Act 2: Back in the Habit, Teenage Mutant Ninja Turtles.</em></p>
       <p>You can see more details <strong><a href="https://de.wikipedia.org/wiki/Whoopi_Goldberg">here</a></strong>!</p></td>
-      <td><img alt="male" src="assets/plots/Famous_female_actor.png" width = "100%"></td>
+      <td><img alt="male" src="assets/plots/Famous_female_actor.png" width = "200%"></td>
     </tr>
   </table>
 </html>
